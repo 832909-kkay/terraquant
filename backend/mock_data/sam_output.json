@@ -1,0 +1,101 @@
+{
+  "model": "sam-3.1",
+  "request_id": "sam-mock-2026-10-29-B408",
+  "processing_time_ms": 1127,
+  "image_width": 1280,
+  "image_height": 720,
+  "input_image": "/samples/batch_critical_spoilage.png",
+  "detections": [
+    {
+      "id": 1,
+      "label": "tray_region_clean",
+      "confidence": 0.97,
+      "box": { "x1": 50, "y1": 50, "x2": 230, "y2": 190 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 25200,
+      "defect": false,
+      "defect_type": null
+    },
+    {
+      "id": 2,
+      "label": "tray_region_clean",
+      "confidence": 0.96,
+      "box": { "x1": 600, "y1": 50, "x2": 710, "y2": 190 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 15400,
+      "defect": false,
+      "defect_type": null
+    },
+    {
+      "id": 3,
+      "label": "moisture_clump_severe",
+      "confidence": 0.94,
+      "box": { "x1": 240, "y1": 200, "x2": 580, "y2": 500 },
+      "mask_rle": "eNqrVkqtKU9...",
+      "area_px": 102000,
+      "defect": true,
+      "defect_type": "severe_moisture_clump",
+      "defect_severity": "critical"
+    },
+    {
+      "id": 4,
+      "label": "tray_region_clean",
+      "confidence": 0.95,
+      "box": { "x1": 1060, "y1": 50, "x2": 1220, "y2": 190 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 22400,
+      "defect": false,
+      "defect_type": null
+    },
+    {
+      "id": 5,
+      "label": "black_bean_necrosis",
+      "confidence": 0.93,
+      "box": { "x1": 720, "y1": 320, "x2": 1040, "y2": 580 },
+      "mask_rle": "eNqrVkqtKU9...",
+      "area_px": 83200,
+      "defect": true,
+      "defect_type": "black_bean_necrosis",
+      "defect_severity": "critical"
+    },
+    {
+      "id": 6,
+      "label": "tray_region_clean",
+      "confidence": 0.98,
+      "box": { "x1": 50, "y1": 530, "x2": 220, "y2": 680 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 25500,
+      "defect": false,
+      "defect_type": null
+    },
+    {
+      "id": 7,
+      "label": "tray_region_clean",
+      "confidence": 0.96,
+      "box": { "x1": 1080, "y1": 590, "x2": 1230, "y2": 690 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 15000,
+      "defect": false,
+      "defect_type": null
+    },
+    {
+      "id": 8,
+      "label": "inspection_tray",
+      "confidence": 0.99,
+      "box": { "x1": 30, "y1": 30, "x2": 1250, "y2": 690 },
+      "mask_rle": "eNqtVstu2zAQ...",
+      "area_px": 805200,
+      "defect": false,
+      "defect_type": null
+    }
+  ],
+  "summary": {
+    "total_regions": 7,
+    "clean_regions": 5,
+    "defective_regions": 2,
+    "defective_area_px": 185200,
+    "total_tray_area_px": 805200,
+    "raw_defect_pct": 23.0,
+    "severity": "critical"
+  }
+}

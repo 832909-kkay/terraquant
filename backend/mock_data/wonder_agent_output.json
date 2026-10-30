@@ -1,0 +1,126 @@
+{
+  "model": "muse-wonder-1.0",
+  "request_id": "wonder-mock-2026-10-29-B408",
+  "processing_time_ms": 2340,
+  "agent_reasoning": [
+    {
+      "step": 1,
+      "action": "read_sla_contract",
+      "observation": "Contract SLA-TQ-2026-B408: 50 MT @ $3,100/MT = $155,000. SLA breach threshold = 5.0% defect. Penalty = 15% of contract value. Working capital cap = $250,000."
+    },
+    {
+      "step": 2,
+      "action": "compare_defect_to_threshold",
+      "observation": "Detected defect_pct=14.2% exceeds SLA breach threshold 5.0% by 9.2 percentage points. Grade-A threshold (2.0%) also exceeded. SLA breach confirmed."
+    },
+    {
+      "step": 3,
+      "action": "calculate_penalty",
+      "observation": "Contract value = 50 MT x $3,100 = $155,000. Penalty = 15% x $155,000 = $23,250."
+    },
+    {
+      "step": 4,
+      "action": "check_working_capital",
+      "observation": "LC escrow upfront = 10% x $155,000 = $15,500. Order cost $15,500 is well within $250,000 working capital cap."
+    },
+    {
+      "step": 5,
+      "action": "evaluate_var_risk",
+      "observation": "VaR95 and VaR99 computed from GARCH Monte Carlo on 50 MT position over 30-day horizon."
+    },
+    {
+      "step": 6,
+      "action": "propose_hedge",
+      "observation": "Long Strap strategy (2 calls + 1 put) on coffee futures recommended per SLA hedge rules. Covers upside supply squeeze from lot rejection + downside defect disposal loss."
+    },
+    {
+      "step": 7,
+      "action": "verify_accounting_constraints",
+      "observation": "All 4 deterministic accounting constraints verified by Python checker."
+    }
+  ],
+  "penalty_debit_note": {
+    "document_id": "DN-TQ-2026-10-29-B408",
+    "issued_to": "AgroSource Global Ltd.",
+    "issued_by": "TerraQuant Commodities Pvt. Ltd.",
+    "date": "2026-10-29",
+    "batch_ref": "B408-DOCK4",
+    "line_items": [
+      {
+        "description": "Quality defect penalty - defect_pct 14.2% vs SLA max 5.0%",
+        "basis": "15% of contract value $155,000",
+        "amount_usd": 23250.00
+      }
+    ],
+    "total_debit_usd": 23250.00,
+    "payment_due_days": 14,
+    "status": "ISSUED"
+  },
+  "hedge_proposal": {
+    "strategy": "Long Strap (2 x Call + 1 x Put)",
+    "underlying": "Arabica Coffee ICE Futures - Mar 2027",
+    "rationale": "Defect-driven batch rejection creates asymmetric upside price risk from localized supply shortage. Long Strap amplifies call exposure while retaining downside floor.",
+    "legs": [
+      {
+        "leg": "Call #1",
+        "type": "call",
+        "strike_usd": 3250.00,
+        "contracts": 2,
+        "premium_per_contract_usd": 1450.00,
+        "total_premium_usd": 2900.00
+      },
+      {
+        "leg": "Call #2",
+        "type": "call",
+        "strike_usd": 3400.00,
+        "contracts": 2,
+        "premium_per_contract_usd": 980.00,
+        "total_premium_usd": 1960.00
+      },
+      {
+        "leg": "Put #1",
+        "type": "put",
+        "strike_usd": 2900.00,
+        "contracts": 2,
+        "premium_per_contract_usd": 1120.00,
+        "total_premium_usd": 2240.00
+      }
+    ],
+    "total_hedge_cost_usd": 7100.00,
+    "max_upside_protection_usd": 42000.00,
+    "breakeven_price_usd": 3171.00
+  },
+  "accounting_check": {
+    "valid": true,
+    "checks": [
+      {
+        "constraint": "Assets == Liabilities + Equity",
+        "lhs": 38750.00,
+        "rhs": 38750.00,
+        "passed": true,
+        "detail": "Assets=$38,750 (LC escrow $15,500 + Penalty Debit $23,250) = Liabilities=-$211,250 + Equity=$250,000"
+      },
+      {
+        "constraint": "Order_Cost <= Working_Capital_Cap",
+        "lhs": 15500.00,
+        "rhs": 250000.00,
+        "passed": true,
+        "detail": "LC upfront $15,500 <= WC cap $250,000"
+      },
+      {
+        "constraint": "Penalty_Debit <= Max_Penalty_Cap",
+        "lhs": 23250.00,
+        "rhs": 38750.00,
+        "passed": true,
+        "detail": "Penalty $23,250 <= cap $38,750 (25% of $155,000)"
+      },
+      {
+        "constraint": "Hedge_Cost <= VaR_99 * Safety_Multiple",
+        "lhs": 7100.00,
+        "rhs": 500000.00,
+        "passed": true,
+        "detail": "Hedge $7,100 <= VaR99 * 10"
+      }
+    ]
+  }
+}

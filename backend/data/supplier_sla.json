@@ -1,0 +1,67 @@
+{
+  "contract_id": "SLA-TQ-2026-B408",
+  "supplier": {
+    "name": "AgroSource Global Ltd.",
+    "registration": "AG-2024-77432",
+    "country": "Brazil",
+    "commodity": "Arabica Coffee (Specialty Grade AA)"
+  },
+  "buyer": {
+    "name": "TerraQuant Commodities Pvt. Ltd.",
+    "registration": "TQ-IN-2024-00112",
+    "country": "India / Global"
+  },
+  "contract_terms": {
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "commodity": "Arabica Coffee Beans",
+    "quantity_mt": 50.0,
+    "unit_price_per_mt_usd": 3100.0,
+    "total_contract_value_usd": 155000.0,
+    "currency": "USD",
+    "payment_terms_days": 30
+  },
+  "quality_thresholds": {
+    "grade_a_max_defect_pct": 2.0,
+    "sla_breach_defect_pct": 5.0,
+    "max_defect_pct": 5.0,
+    "max_moisture_pct": 12.0,
+    "min_screen_size": 16,
+    "defect_categories": [
+      "moisture_clumps",
+      "black_beans",
+      "discoloration",
+      "sour_beans",
+      "insect_damage",
+      "foreign_debris"
+    ]
+  },
+  "penalty_clauses": {
+    "defect_breach_penalty_pct": 15.0,
+    "late_delivery_penalty_per_day_usd": 1200.0,
+    "quality_breach_action": "debit_note_plus_price_renegotiation",
+    "max_penalty_cap_pct": 25.0
+  },
+  "financial_controls": {
+    "working_capital_cap_usd": 250000.0,
+    "payment_terms_days": 30,
+    "letter_of_credit_required": true,
+    "escrow_pct": 10.0
+  },
+  "hedge_rules": {
+    "strategy": "Long Strap",
+    "ratio": "2 Calls + 1 Put",
+    "rationale": "Defect-driven shipment rejection triggers severe localized supply shortage risk with asymmetric upside price spikes, while maintaining downside floor protection.",
+    "allowed_instruments": [
+      "futures",
+      "options_calls",
+      "options_puts",
+      "strap"
+    ]
+  },
+  "audit": {
+    "inspection_point": "Dock 4 Receiving Bay",
+    "third_party_inspector": "SGS Global Agricultural Services",
+    "dispute_resolution": "ICC_arbitration_Geneva"
+  }
+}
