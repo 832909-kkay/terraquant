@@ -2,7 +2,7 @@
 
 > **Meta Global AI Developer Hackathon Submission**  
 > **Tracks:** *Push the Frontier* & *Build for Your World*  
-> **Creator:** Kailash Suthar (`Itsdreamrender`)
+> **Creator:** Kailash Suthar (`832909-kkay`)
 
 ---
 
@@ -68,7 +68,7 @@ Unlike generic AI wrappers, TerraQuant converts computer vision metrics into rig
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/terraquant.git
+   git clone https://github.com/832909-kkay/terraquant.git
    cd terraquant
    ```
 
@@ -109,3 +109,4 @@ Unlike generic AI wrappers, TerraQuant converts computer vision metrics into rig
 
 - Built 100% fresh during the Meta Global AI Developer Hackathon window (Oct 27 – Nov 4).
 - Licensed under the [MIT License](LICENSE).
+
